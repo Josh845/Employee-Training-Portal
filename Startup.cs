@@ -33,6 +33,7 @@ namespace Employee_Training_Portal
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
+               
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +43,7 @@ namespace Employee_Training_Portal
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                
             }
             else
             {

@@ -11,6 +11,7 @@ namespace Employee_Training_Portal.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
     }
 }

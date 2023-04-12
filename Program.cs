@@ -21,6 +21,10 @@ namespace Employee_Training_Portal
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    
                 });
+
+
+
     }
 }
