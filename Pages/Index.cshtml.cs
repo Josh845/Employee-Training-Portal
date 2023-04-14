@@ -21,5 +21,10 @@ namespace Employee_Training_Portal.Pages
         {
 
         }
+
+        public IActionResult Post() {
+            return RedirectToPage("Employee");
+        }
+
     }
 }
