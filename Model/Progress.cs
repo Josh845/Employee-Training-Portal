@@ -4,14 +4,12 @@ namespace Employee_Training_Portal.Model
 {
     public class Progress
     {
- 
+
         [Key]
-        public int progressId { get; set; }
+        public int progressId { get; set; } //primary key for accessing progress table
 
-        [ForeignKey ("employeeID")]
-        public int employeeID { get; set; }
-
-
+        [ForeignKey("employeeID")]//foreign key to access score based on employee ID 
+        public int score { get; set; }//default score set to 0 
 
     }
 }

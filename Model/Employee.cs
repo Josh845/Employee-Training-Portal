@@ -8,11 +8,11 @@ namespace Employee_Training_Portal.Model
         [Key]
         [Required]
         public int employeeID { get; set; }
-        public string fname { get; set; } = "employee";
+        public string fname { get; set; }
 
         public string lname { get; set; }
 
-        public string password { get; set; } = "employee1"; 
+        public string password { get; set; }
 
         public int score { get; set; }
     }
