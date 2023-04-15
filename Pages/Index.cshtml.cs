@@ -17,12 +17,41 @@ namespace Employee_Training_Portal.Pages
             _logger = logger;
         }
 
+        [BindProperty]
+        public string userpass { get; set; }    //get username 
+
+        [BindProperty]
+        public string password { get; set; } //get user password
         public void OnGet()
         {
+                    //method for first loading into page
 
         }
 
-        public IActionResult Post() {
+        //function used to route to employee view
+        public async Task<IActionResult> OnPost(string user, string pass) {
+            //basic authentication
+            try
+            {              
+                if (user == "j" && pass == "pass")
+                {
+                    Console.WriteLine("Authenticated Employer");
+                    return RedirectToPage("Employer");
+                }
+                else if (user == "employee1" && pass == "test")
+                {
+                    Console.WriteLine("Authenticated Employee");
+                    return RedirectToPage("Employee");
+                }
+                else { Console.WriteLine("Authentication Failed"); }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return RedirectToPage("Error");
+            }
+
             return RedirectToPage("Employee");
         }
 

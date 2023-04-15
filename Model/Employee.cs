@@ -6,8 +6,7 @@ namespace Employee_Training_Portal.Model
     {
         //create all properties for Employee model
         [Key]
-        [Required]
-        public int employeeID { get; set; }
+        public int employeeID { get; set; } = 1;
         public string fname { get; set; }
 
         public string lname { get; set; }

@@ -6,12 +6,12 @@ namespace Employee_Training_Portal.Model
     {
         [Key]
         [Required]
-        public int employerID { get; set; } = 1; 
-        public string fname { get; set; } = "junaid";
+        public int employerID { get; set; } 
+        public string fname { get; set; }
 
-        public string lname { get; set; } = "zubairi";
+        public string lname { get; set; }
 
-        public string password { get; set; } = "zub1"; 
+        public string password { get; set; }
 
     }
 }
