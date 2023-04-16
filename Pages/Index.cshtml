@@ -16,20 +16,19 @@
     <form method="post">
         <label>User Name</label>
         <br>
-        <input name="user" type="text" required>             
-        <span asp-asp-validation-for="user" class="text-bg-danger"> </span>
+        <input name="user_name" type="text" required>             
+        <span asp-validation-for="user_name" class="text-bg-danger"> </span>
 
         <br>
         <label>Password</label> 
-        <br>
-          
-            <input name="pass" type="password" required>
-            <span asp-asp-validation-for="pass" class="text-bg-danger"> </span>
+        <br>          
+            <input name="pass_word" type="password" required>
+            <span asp-validation-for="pass_word" class="text-bg-danger"> </span>
 
         <br />
             <div class="text-center">
                 <br><br>
-                <button class="text-center btn btn-outline-success" asp-asp-page-handler="" type="submit"> Login </button>
+                <button class="text-center btn btn-outline-success" type="submit"> Login </button>
                 <br>
             </div>
             
@@ -39,3 +38,11 @@
     <br>
 
 </body>
+
+
+@section Scripts{
+    @{
+
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

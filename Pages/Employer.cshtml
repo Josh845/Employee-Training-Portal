@@ -3,27 +3,30 @@
 @{
 
 
-
 }
-
-
-    <div class="text-center";
+  @*  <div class="text-center"></div>
+      <div class="text-md-end></div>
+  *@
     <h1 class="display-4">Employer View</h1>
-    <form > 
-        <label> View Employee Score </label>
-        <button></button>
 
-        <label> Set Deadline </label>
-        <button> </button>
+    <form class="align-content-md-center">
 
+        <label class="display-3"> View Employee Score </label>
+        <br><br />
+               <button> View Score </button>
+        <br><br />
+               <label class="display-3"> Set Deadline </label>
+        <br><br />
+                <button> Set Deadline </button>
+        <br><br />
 
+        <div class="text-md-right">
 
-        <label for="start">Deadline:</label>
+          <label for="start">Deadline:</label>
+           
+            <input type="date" id="start" name="trip-start"
+               value="2022-04-15"
+               min="2022-01-01" max="2022-12-31">
+        </div>
 
-<input type="date" id="start" name="trip-start"
-       value="2022-04-15"
-       min="2022-01-01" max="2022-12-31">
-
-    </form>
-
-
+</form>
