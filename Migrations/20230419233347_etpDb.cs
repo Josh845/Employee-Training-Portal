@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Employee_Training_Portal.Migrations
 {
@@ -14,8 +15,7 @@ namespace Employee_Training_Portal.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fname = table.Column<string>(nullable: true),
                     lname = table.Column<string>(nullable: true),
-                    password = table.Column<string>(nullable: true),
-                    score = table.Column<int>(nullable: false)
+                    password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,9 @@ namespace Employee_Training_Portal.Migrations
                 {
                     progressId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    score = table.Column<int>(nullable: false)
+                    employeeFK = table.Column<int>(nullable: false),
+                    score = table.Column<int>(nullable: true),
+                    deadline = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

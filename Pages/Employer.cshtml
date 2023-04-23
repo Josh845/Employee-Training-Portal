@@ -1,32 +1,46 @@
 ﻿@page
 @model Employee_Training_Portal.Pages.EmployerModel
 @{
-
-
+    
+   
 }
-  @*  <div class="text-center"></div>
-      <div class="text-md-end></div>
-  *@
-    <h1 class="display-4">Employer View</h1>
 
-    <form class="align-content-md-center">
+    <h1 class="display-4 align-content-center">Employer View</h1>
 
-        <label class="display-3"> View Employee Score </label>
+    <header>
+        <ul>
+            <li class="nav-link-item">
+                <partial name="_LogoutPartial"/>
+            </li>
+        </ul>
+    </header>
+<body>
+    <form class="align-content-md-center" method="post">
         <br><br />
-               <button> View Score </button>
-        <br><br />
-               <label class="display-3"> Set Deadline </label>
-        <br><br />
-                <button> Set Deadline </button>
-        <br><br />
+            <label class="display-3"> View Employee Score </label>
 
-        <div class="text-md-right">
+            <br><br />
+                   <button asp-page-handler="ViewScore" name="view-score-btn" type="submit" class="btn btn-outline-success"> View Score </button>
+        <br><br />
+                   <label class="display-3"> Set Deadline </label>
+            <br><br />
+        <button asp-page-handler="SetDeadLine" name="set_deadline_btn" type="submit" class="btn btn-outline-success"> Set Deadline </button>
+            <br><br />
+       <button asp-page-handler="Reset" name="reset_btn" type="submit" class="btn btn-outline-success"> Reset </button>
+           @* <div class="align-content-end>
 
-          <label for="start">Deadline:</label>
+              <label for="start">Deadline:</label>
            
-            <input type="date" id="start" name="trip-start"
-               value="2022-04-15"
-               min="2022-01-01" max="2022-12-31">
-        </div>
+                <input type="date" id="start" name="set_deadline"
+                   value="@ViewData["viewDeadLine"]
+                   min="2023-01-01" max="2023-12-31">
+            </div>*@
+    </form>
 
-</form>
+    <div class="display-3">
+        <label> @ViewData["employeeScore"]</label>
+        <label> @ViewData["viewDeadLine"]</label>
+    </div>
+
+
+</body>

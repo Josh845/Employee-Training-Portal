@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,30 +29,37 @@ namespace Employee_Training_Portal.Pages
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        [BindProperty]
+            [BindProperty]
             public string user_name { get; set; }    //get username from html form
 
             [BindProperty]
             public string pass_word { get; set; } //get user password from html form
+
+            [ViewData]
+            public string inc_pass { get;} //displays that incorrect credentials were provided
         
         public void OnGet()
         {
-            
+
+
+      
         }
 
         //function used to route to employee view
+
         public async Task<IActionResult> OnPost() {
             //basic authentication 
                     try
                     {
               
-                _db.Database.OpenConnection();
                 var userEmployeeName = _db.Employee.FirstOrDefault().fname.ToString().TrimEnd(); //gets employee name from db and trims
                 var userEmployerName = _db.Employer.FirstOrDefault().fname.ToString().TrimEnd(); //gets employer name from db and trims
 
-                var userEmployee_pass = _db.Employee.FirstOrDefault().password.ToString().TrimEnd(); //
-                var userEmployer_pass = _db.Employer.FirstOrDefault().password.ToString().TrimEnd();
+                var userEmployee_pass = _db.Employee.FirstOrDefault().password.ToString().TrimEnd(); //gets employee name from db and trims whitespace
+                var userEmployer_pass = _db.Employer.FirstOrDefault().password.ToString().TrimEnd();//gets employer name from db and trims whitespace
 
+
+                //authentication
                 if (userEmployerName == user_name && userEmployer_pass  == pass_word)
                         {
                             Console.WriteLine("Authenticated Employer");
@@ -59,14 +67,14 @@ namespace Employee_Training_Portal.Pages
                         }
                         else if (userEmployeeName == user_name && userEmployee_pass == pass_word)
                         {
-                            Console.WriteLine("Authenticated Employee");
+                          Console.WriteLine("Authenticated Employee");
                             return RedirectToPage("Employee");
                        }
                 
                         else
                         {
-                            Console.WriteLine("Authentication Failed");
-                            return RedirectToPage("Index");
+                            ViewData["inc_pass"] = "Incorrect Username or Password";
+                    return RedirectToPage("Index");        
                         }
 
                     }
@@ -75,9 +83,6 @@ namespace Employee_Training_Portal.Pages
                         Console.WriteLine(ex.Message);
                         return RedirectToPage("Error");
                     }
-
-                    _db.Database.CloseConnection();
-                    return RedirectToPage("Index");
         }
 
     }

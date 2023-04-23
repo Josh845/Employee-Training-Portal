@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.VisualBasic;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Employee_Training_Portal.Model
 {
@@ -6,7 +8,7 @@ namespace Employee_Training_Portal.Model
     {
         [Key]
         [Required]
-        public int employerID { get; set; } 
+        public int employerID { get; set; }
         public string fname { get; set; }
 
         public string lname { get; set; }

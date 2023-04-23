@@ -1,8 +1,6 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "ETP";
-
 
 }
 
@@ -28,10 +26,12 @@
         <br />
             <div class="text-center">
                 <br><br>
-                <button class="text-center btn btn-outline-success" type="submit"> Login </button>
+                <button asp-page-handler="Login" class="text-center btn btn-outline-success" type="submit"> Login </button>
                 <br>
+                
             </div>
-            
+
+            <label> @ViewData["inc_pass"] </label>
     </form>
     <br>
     </div>

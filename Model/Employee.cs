@@ -6,13 +6,12 @@ namespace Employee_Training_Portal.Model
     {
         //create all properties for Employee model
         [Key]
-        public int employeeID { get; set; } = 1;
+        public int employeeID { get; set; }
         public string fname { get; set; }
 
         public string lname { get; set; }
 
         public string password { get; set; }
 
-        public int score { get; set; }
     }
 }
