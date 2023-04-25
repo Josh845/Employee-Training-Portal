@@ -1,59 +1,113 @@
 ﻿@page
 @model Employee_Training_Portal.Pages.EmployeeModel
 @{
-
+   
 }
+
+<head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</head>
 
 <div class="text-center">
 
     <h1 class="display-4"> Employee Training Portal</h1>
+    <label>@ViewData["success"]</label>
     <!-- Top content -->
     <div class="top-content">
         <div class="container">
-            <!-- Title and description row -->
-            <div class="row">
-                <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                    <h1>Carousel Template with Videos</h1>
-                    <div class="description">
-                        <p>
-                            This is a free Carousel template with Videos made with the Bootstrap 4 framework.
-                            Click on the indicators, controls and links to interact with the page.
-                        </p>
-                    </div>
-                </div>
-            </div>
             <!-- End title and description row -->
             <!-- Carousel row -->
             <div class="row">
                 <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                     <!-- Carousel -->
                     <div id="carousel-example" class="carousel slide">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example" data-slide-to="1"></li>
-                            <li data-target="#carousel-example" data-slide-to="2"></li>
-                        </ol>
+                        
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6hgVihWjK2c?rel=0" allowfullscreen></iframe>
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xXv8k_-C3wc" allowfullscreen></iframe>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/84910153?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;color=ffffff" allowfullscreen></iframe>
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Np14M0du758" allowfullscreen></iframe>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oiKj0Z_Xnjc" allowfullscreen></iframe>
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lNnOzLl1gsE" allowfullscreen></iframe>
                                 </div>
                             </div>
+
+                            <div class="carousel-item">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <h2> What are some examples of employee training? </h2>
+                                    <p> -Onboarding training </p>
+                                    <p> -Coaching as an example of employee training program </p>
+                                    <p> -Compliance training </p>
+
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <h3> What motivates employees to learn during training? </h3>
+                                    <p> -The best way to motivate employees to participate in training is by making every course practical and relevant. </p>
+                                    <p> -Analyze performance objectives, ask employees what they're struggling with or how they could improve, and then give them the training they need to get better at their jobs. </p>
+
+
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <h4> Why is training employees important? </h4>
+                                    <p>
+                                        -Why is training employees important?
+                                        Training and development programs help employees manage tasks individually or in teams, relying on a greater understanding of processes and clearly defined goals.
+                                    </p>
+                                    <p> -Because employees are well-versed in the skills required for their job, they will require less time to find ways to perform tasks. </p>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="carousel-item">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ny9PMJxm5jk" allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="carousel-item">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fth3ywmCsGs" allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e36X01vBlbs" allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="carousel-item">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TAhyHqpSo38" allowfullscreen></iframe>
+                                </div>
+                            </div>
+
                         </div>
                         <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
-                        </a>
+                        </a> 
                         <a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
@@ -65,3 +119,54 @@
             <!-- End carousel row -->
         </div>
     </div>
+</div>
+             <br />
+             <br />
+
+<div class="progress">
+    <div id="progressBarValue" name="progressBarValue" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="110"></div>
+</div>
+<br />
+<br />
+
+<form id="scoreForm" method="post">
+    <button class="btn btn-outline-success" type="button">Save</button>
+</form>
+
+<script>
+                $(document).ready(function () {
+                    // Get the carousel element
+                    var $carousel = $('.carousel');
+
+                    // Get the progress bar element
+                    var $progressBar = $('.progress-bar');
+
+                    // Set the initial progress bar value
+                    $progressBar.css('width', '0%').attr('aria-valuenow', 0);
+                    
+                    
+                    // Handle the carousel slide event
+                    $carousel.on('slide.bs.carousel', function (e) {
+
+                        var direction = e.direction; 
+
+                        if(direction === "right"){return;}
+
+                        // Get the current progress bar value
+                        var currentValue = parseInt($progressBar.attr('aria-valuenow'));
+
+                        // Increment the progress bar value
+                        var newValue = currentValue + 10;
+
+                        // Update the progress bar width and value
+                        $progressBar.css('width', newValue + '%').attr('aria-valuenow', newValue);
+                        
+                       
+                      if(newValue == 110){  
+                          $('#scoreForm').submit(); //training complete call onPost method                             
+                      }
+
+                    });
+                       
+                });
+</script>
