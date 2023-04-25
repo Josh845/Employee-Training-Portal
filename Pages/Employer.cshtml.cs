@@ -9,7 +9,6 @@ using System.Linq;
 namespace Employee_Training_Portal.Pages
 {
 
-   
     public class EmployerModel : PageModel
     {
 

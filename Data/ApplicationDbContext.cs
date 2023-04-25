@@ -19,6 +19,6 @@ namespace Employee_Training_Portal.Data
         public DbSet<Employer> Employer { get; set; }
 
         public DbSet<Progress> Progress { get; set; }
-
+        
     }
 }
