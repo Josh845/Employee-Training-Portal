@@ -1,13 +1,14 @@
 ﻿@page
+@using Employee_Training_Portal.Model;
 @model Employee_Training_Portal.Pages.EmployerModel
 
 @{
 
-    ViewData["Title"] = "Employer";
    
+  
 }
-    <h1 class="display-4 align-content-center">Employer View</h1>
-
+<h1 class="display-4 align-content-center">Employer View</h1>
+    
 <body>
     <form class="align-content-md-center" method="post">
         <br><br />
@@ -35,6 +36,7 @@
         <label> @ViewData["employeeScore"]</label>
         <label> @ViewData["viewDeadLine"]</label>
     </div>
-
-
 </body>
+<br />
+<br />
+<button onclick="location.href = '/';" id="myButton" class="float-left btn btn-outline-success">Logout</button>

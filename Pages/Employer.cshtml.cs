@@ -132,14 +132,16 @@ namespace Employee_Training_Portal.Pages
             try
             {
                 var deadLineIsSet = _db.Progress.FirstOrDefault().deadline;
+               
 
                 if (deadLineIsSet >= DateTime.Today)
                 {
                     //set deadline back to minimum  
                     set_deadline = DateTime.MinValue;
+                    _db.Progress.FirstOrDefault().score = 0;
                     _db.Progress.FirstOrDefault().deadline = set_deadline;
                     _db.SaveChanges();
-                    ViewData["viewDeadLine"] = "Deadline Reset!";
+                    ViewData["viewDeadLine"] = "Score and Deadline Reset!";
                 }
                 else
                 {
