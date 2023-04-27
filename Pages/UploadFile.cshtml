@@ -1,0 +1,46 @@
+﻿@page
+@model Employee_Training_Portal.Pages.UploadFileModel
+@{
+
+}
+
+<label class="display-3">Upload documents</label>
+<br /><br />
+<label>@ViewData["Message"]</label>
+<p>
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <label for="file">Select file to upload:</label>
+            <input type="file" id="file" name="file" />
+        </div>
+        <button type="submit" name="action" value="upload">Upload</button>
+    </form>
+</p>
+
+<br /><br />
+
+@if (Model.Files != null && Model.Files.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model.Files)
+            {
+                <tr>
+                    <td>@file.fileName</td>
+                    <td>
+                        <form method="post" onsubmit="return confirm('Are you sure you want to delete this file?')">
+                            <input type="hidden" name="id" value="@file.fileID" />
+                            <button type="submit" name="action" value="delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

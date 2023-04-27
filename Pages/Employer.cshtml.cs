@@ -1,6 +1,7 @@
 using Employee_Training_Portal.Data;
 using Employee_Training_Portal.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -18,12 +19,6 @@ namespace Employee_Training_Portal.Pages
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        Employer employer { get; set; } //employer model
-
-        Employee employee { get; set; } //employee model
-
-        Progress progress { get; set; } //progress model 
-
         [ViewData]
         int employeeScore { get; set; } //display employee score 
 
@@ -34,7 +29,7 @@ namespace Employee_Training_Portal.Pages
         [BindProperty]
         DateTime set_deadline { get; set; } = DateTime.Today;  //get deadline set from the calendar
 
-
+      
         public void OnGet()
         {
 
@@ -45,6 +40,8 @@ namespace Employee_Training_Portal.Pages
 
 
         }
+
+      
         /// <summary>
         /// Retrieves the score from the employee 
         /// 
@@ -80,6 +77,20 @@ namespace Employee_Training_Portal.Pages
                 RedirectToPage("Employer");
             }
 
+        }
+
+        public void OnPostUpload()
+        {
+            try
+            {
+
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message + " \n Upload Unsuccessful ");
+            }
+            finally { RedirectToPage("UploadFile"); }
+          
         }
 
         /// <summary>
