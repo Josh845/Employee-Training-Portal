@@ -4,9 +4,9 @@
 
 }
 
-<label class="display-3">Upload documents</label>
+<label class="display-4">Upload videos and documents</label>
 <br /><br />
-<label>@ViewData["Message"]</label>
+<label>@TempData["Message"]</label>
 <p>
     <form method="post" enctype="multipart/form-data">
         <div>
@@ -19,6 +19,20 @@
 
 <br /><br />
 
+<!--Uploading a video to the database using video URL -->
+<p class="align-content-end">
+    <form method="post" enctype="multipart/form-data">
+        <div>            
+            <label for="video">Provide URL for video:</label>
+            <input type="url" id="url" name="url" />
+        </div>
+        <button asp-page-handler="UploadVideo" type="submit" name="videoAction" value="uploadVideo">Upload</button>
+    </form>
+</p>
+
+<br /><br />
+
+<!-- If files exist; provide the option to delete -->
 @if (Model.Files != null && Model.Files.Any())
 {
     <table>
@@ -41,6 +55,25 @@
                     </td>
                 </tr>
             }
+           
         </tbody>
     </table>
+}
+
+<!--Logic for video showing links-->
+<!-- If video exist; provide the option to delete -->
+@if (Model.videoURL == null && Model.videoURL.Any())
+{
+    @foreach (var video in Model.videoURL)
+    {
+        <tr>
+            <td>@video.videoURL</td>
+            <td>
+                <form method="post" onsubmit="return confirm('Are you sure you want to delete this video?')">
+                    <input type="hidden" name="id" value="@video.videoID"/>
+                    <button type="submit" name="videoAction" value="delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
 }

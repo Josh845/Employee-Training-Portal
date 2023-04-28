@@ -4,14 +4,16 @@ using Employee_Training_Portal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Employee_Training_Portal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230428140026_etpDb4")]
+    partial class etpDb4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,21 +103,6 @@ namespace Employee_Training_Portal.Migrations
                     b.HasKey("fileID");
 
                     b.ToTable("UploadFile");
-                });
-
-            modelBuilder.Entity("Employee_Training_Portal.Model.Video", b =>
-                {
-                    b.Property<int>("videoID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("videoURL")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("videoID");
-
-                    b.ToTable("VideoFile");
                 });
 #pragma warning restore 612, 618
         }

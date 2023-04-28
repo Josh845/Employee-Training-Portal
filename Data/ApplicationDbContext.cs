@@ -21,5 +21,7 @@ namespace Employee_Training_Portal.Data
         public DbSet<Progress> Progress { get; set; }
 
         public DbSet<UploadFile> UploadFile { get; set; }
+
+        public DbSet<Video> VideoFile { get; set; }
     }
 }

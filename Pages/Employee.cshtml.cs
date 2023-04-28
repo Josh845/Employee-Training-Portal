@@ -54,6 +54,10 @@ namespace Employee_Training_Portal.Pages
                 _db.SaveChanges();               
             }
         }
+
+
+
+
         /*
         public IActionResult OnPostSaveScore(int progressBarValue)
         {
