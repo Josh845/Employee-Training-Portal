@@ -17,7 +17,7 @@ namespace Employee_Training_Portal.Pages
     {
         private readonly ApplicationDbContext _db;
 
-        [TempData]
+        [ViewData]
         public string Message { get; set; }  
 
         [BindProperty]
@@ -35,7 +35,7 @@ namespace Employee_Training_Portal.Pages
         {
             //retrieve database files as a list
             Files = _db.UploadFile.ToList();
-            
+            videoURL = _db.VideoFile.ToList();
         }
 
         /// <summary>
@@ -45,7 +45,8 @@ namespace Employee_Training_Portal.Pages
         /// <param name="url"></param>
         /// <param name="videoAction"></param>
         /// <returns>List of video URL links 
-        /// as well as providing 
+        /// as well as providing the option to delete existing URL links 
+        /// stored in the database
         /// </returns>
         /// <exception cref="Exception"></exception>
         public async Task<IActionResult> OnPostUploadVideo(int id, string url, string videoAction)
@@ -75,19 +76,14 @@ namespace Employee_Training_Portal.Pages
                         await _db.SaveChangesAsync();
                     }
                 }
-                else 
-                {
-                    videoURL = _db.VideoFile.ToList();
-                    return Page();
-                }
+                videoURL = _db.VideoFile.ToList();
+                return Page();
 
             }
             catch (Exception ex)
             {
                 throw new Exception("Invalid url provided" + ex.Message);
-            }
-           
-            return Page(); 
+            }           
         }
 
         /// <summary>
@@ -103,7 +99,7 @@ namespace Employee_Training_Portal.Pages
 
                 if (Files.Count > 10)//check to only allow 10 files
                 {
-                    ModelState.AddModelError("", "Only Allowed a Maximum of 10 files");
+                   Message = "Only Allowed a Maximum of 10 files";
                     return Page();
                 }
                 else
@@ -136,7 +132,6 @@ namespace Employee_Training_Portal.Pages
                             await _db.SaveChangesAsync();
                         }
                     }
-
                     // Refresh the list of files and return to the page
                     Files = _db.UploadFile.ToList();
                     return Page();
@@ -149,7 +144,7 @@ namespace Employee_Training_Portal.Pages
             }
             finally
             {
-                Message = "Success";
+                Message = "";
             }
         }
     }

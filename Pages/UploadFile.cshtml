@@ -6,7 +6,7 @@
 
 <label class="display-4">Upload videos and documents</label>
 <br /><br />
-<label>@TempData["Message"]</label>
+<label>@ViewData["Message"]</label>
 <p>
     <form method="post" enctype="multipart/form-data">
         <div>
@@ -59,11 +59,18 @@
         </tbody>
     </table>
 }
-
 <!--Logic for video showing links-->
 <!-- If video exist; provide the option to delete -->
-@if (Model.videoURL == null && Model.videoURL.Any())
+@if (Model.videoURL != null && Model.videoURL.Any())
 {
+    <table>
+        <thead>
+            <tr>
+                <th>URL Name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
     @foreach (var video in Model.videoURL)
     {
         <tr>
@@ -76,4 +83,6 @@
             </td>
         </tr>
     }
+        </tbody>
+    </table>
 }
