@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +17,9 @@ namespace Employee_Training_Portal.Pages
         public Employee employee { get; set; }
         public Progress progress { get; set; }
 
+        [BindProperty]
+        public string videoURL { get; set; }
+
         [ViewData]
         public int get_score { get; } //display progress bar 
 
@@ -23,7 +27,8 @@ namespace Employee_Training_Portal.Pages
         public string success { get; set; } //display submission response     
 
         private readonly ApplicationDbContext _db;
-        public EmployeeModel(ApplicationDbContext db){
+        public EmployeeModel(ApplicationDbContext db)
+        {
 
             _db = db;
 
@@ -32,8 +37,13 @@ namespace Employee_Training_Portal.Pages
         public void OnGet()
         {
             employee = _db.Employee.FirstOrDefault();
+            var _videoURL = _db.VideoFile.FirstOrDefault().videoURL.TrimEnd(); //finds videoURL from the database by id
+
+            videoURL = _videoURL;
 
         }
+
+
 
         public void OnPost()
         {
@@ -41,17 +51,17 @@ namespace Employee_Training_Portal.Pages
             {
                 _db.Progress.FirstOrDefault().score = 100;
                 ViewData["success"] = "Training Completed! ";
-               
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ViewData["success"] = e.Message;
                 ViewData["error"] = e.StackTrace;
-                
+
             }
             finally
             {
-                _db.SaveChanges();               
+                _db.SaveChanges();
             }
         }
 

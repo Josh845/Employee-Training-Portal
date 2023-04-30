@@ -26,7 +26,7 @@
             <label for="video">Provide URL for video:</label>
             <input type="url" id="url" name="url" />
         </div>
-        <button asp-page-handler="UploadVideo" type="submit" name="videoAction" value="uploadVideo">Upload</button>
+        <button type="submit" name="action" value="uploadVideo">Upload</button>
     </form>
 </p>
 
@@ -78,7 +78,7 @@
             <td>
                 <form method="post" onsubmit="return confirm('Are you sure you want to delete this video?')">
                     <input type="hidden" name="id" value="@video.videoID"/>
-                    <button type="submit" name="videoAction" value="delete">Delete</button>
+                    <button type="submit" name="action" value="deleteVideo">Delete</button>
                 </form>
             </td>
         </tr>
