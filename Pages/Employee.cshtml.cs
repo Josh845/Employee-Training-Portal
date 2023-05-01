@@ -59,8 +59,8 @@ namespace Employee_Training_Portal.Pages
             try
             {
                 _db.Progress.FirstOrDefault().score = 100;
-                ViewData["success"] = "Training Completed! ";
-
+                ViewData["success"] = "Training Completed! Please Logout";
+                RedirectToPage("Employee");
             }
             catch (Exception e)
             {
@@ -71,6 +71,7 @@ namespace Employee_Training_Portal.Pages
             finally
             {
                 _db.SaveChanges();
+                RedirectToPage("Employee");
             }
         }
     }

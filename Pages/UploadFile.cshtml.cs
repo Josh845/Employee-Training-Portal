@@ -76,8 +76,7 @@ namespace Employee_Training_Portal.Pages
                         await _db.SaveChangesAsync();                      
                     }                
                    
-                }
-                
+                }                
                     //logic for video upload and delete
                     //btn selected to enter url 
                     if (action == "uploadVideo" && url != null)

@@ -14,83 +14,37 @@
 </head>
 
 <h1 class="display-4"> Employee Training Portal</h1>
-
-<h2>Deadline: @Model.deadline</h2>
+<label class="display-4">@ViewData["success"]</label>
 
 <!-- If files exist; provide the option to delete -->
-@foreach (var url in Model.videoUrls)
+@if (Model.videoUrls != null || Model.textFiles != null)
 {
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="350" height="215" class="embed-responsive-item" src="@url" allowfullscreen></iframe>
-        <br><br>
-    </div>
+    <h2>Deadline: @Model.deadline</h2>
+    @foreach (var url in Model.videoUrls)
+    {
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe width="350" height="215" class="embed-responsive-item" src="@url" allowfullscreen></iframe>
+            <br><br>
+        </div>
+    }
+    <br />
+    <br />
+    @foreach (var textFile in Model.textFiles)
+    {
+
+        <h2>@textFile.fileName</h2>
+        <p>@System.Text.Encoding.Default.GetString(textFile.Data)</p>
+
+    }
 
 }
-@foreach (var textFile in Model.textFiles)
-{
 
-    <h2>@textFile.fileName</h2>
-    <p>@System.Text.Encoding.Default.GetString(textFile.Data)</p>
-
-}
-<br />
-<br />
-<p id='root'></p>
-<button onclick="document.getElementById('root').innerHTML = 'You have successfully competed all of the employee trainings!'">Done</button>
-
-<br />
-<br />
-<br />
-<br />
-
-<div class="progress">
-    <div id="progressBarValue" name="progressBarValue" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="110"></div>
-</div>
-<br />
-<br />
-
-<form id="scoreForm" method="post">
-
-    <!--<button class="btn btn-outline-success" type="button">Save</button>-->
+<form method="post">
+    <button class="btn btn-outline-success">Done</button>
 </form>
 
-<script>
-    $(document).ready(function () {
-        // Get the carousel element
-        var $carousel = $('.carousel');
-
-        // Get the progress bar element
-        var $progressBar = $('.progress-bar');
-
-        // Set the initial progress bar value
-        $progressBar.css('width', '0%').attr('aria-valuenow', 0);
-
-
-        // Handle the carousel slide event
-        $carousel.on('slide.bs.carousel', function (e) {
-
-            var direction = e.direction;
-
-            if (direction === "right") { return; }
-
-            // Get the current progress bar value
-            var currentValue = parseInt($progressBar.attr('aria-valuenow'));
-
-            // Increment the progress bar value
-            var newValue = currentValue + 10;
-
-            // Update the progress bar width and value
-            $progressBar.css('width', newValue + '%').attr('aria-valuenow', newValue);
-
-
-            if (newValue == 110) {
-                $('#scoreForm').submit(); //training complete call onPost method
-            }
-
-        });
-
-    });
-</script>
+<br />
+<br />
 <br />
 <br />
 <br />
