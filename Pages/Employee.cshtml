@@ -1,6 +1,11 @@
 ﻿@page
+@using System.Text;
 @model Employee_Training_Portal.Pages.EmployeeModel
-@{ }
+
+@{
+
+
+}
 
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -8,87 +13,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 </head>
 
-
-
 <h1 class="display-4"> Employee Training Portal</h1>
 
-<h2>
-    Deadline is 5/12/2023 12:00:00 AM
-</h2>
+<h2>Deadline: @Model.deadline</h2>
 
+<!-- If files exist; provide the option to delete -->
+@foreach (var url in Model.videoUrls)
+{
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe width="350" height="215" class="embed-responsive-item" src="@url" allowfullscreen></iframe>
+        <br><br>
+    </div>
 
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="@Model.videoURL.ToString()" name="Videoid" id="Videoid" allowfullscreen></iframe>
-</div>
+}
+@foreach (var textFile in Model.textFiles)
+{
 
-<!--
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Np14M0du758" allowfullscreen></iframe>
-</div>
+    <h2>@textFile.fileName</h2>
+    <p>@System.Text.Encoding.Default.GetString(textFile.Data)</p>
 
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lNnOzLl1gsE" allowfullscreen></iframe>
-</div>
-
-
-
-<div class="embed-responsive embed-responsive-16by9">
-    <h3> What are some examples of employee training? </h3>
-    <p> -Onboarding training </p>
-    <p> -Coaching as an example of employee training program </p>
-    <p> -Compliance training </p>
-
-</div>
-
-
-<div class="embed-responsive embed-responsive-16by9">
-    <h4> What motivates employees to learn during training? </h4>
-    <p> -The best way to motivate employees to participate in training is by making every course practical and relevant. </p>
-    <p> -Analyze performance objectives, ask employees what they're struggling with or how they could improve, and then give them the training they need to get better at their jobs. </p>
-
-
-</div>
-
-
-<div class="embed-responsive embed-responsive-16by9">
-    <h4> Why is training employees important? </h4>
-    <p>
-        -Why is training employees important?
-        Training and development programs help employees manage tasks individually or in teams, relying on a greater understanding of processes and clearly defined goals.
-    </p>
-    <p> -Because employees are well-versed in the skills required for their job, they will require less time to find ways to perform tasks. </p>
-
-
-</div>
-
-
-
-
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ny9PMJxm5jk" allowfullscreen></iframe>
-</div>
-
-
-
-
-
-
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fth3ywmCsGs" allowfullscreen></iframe>
-</div>
-
-
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e36X01vBlbs" allowfullscreen></iframe>
-</div>
-
-
-
-
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TAhyHqpSo38" allowfullscreen></iframe>
-</div>
--->
+}
 <br />
 <br />
 <p id='root'></p>

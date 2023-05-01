@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,10 +16,8 @@ namespace Employee_Training_Portal.Pages
     {
 
         public Employee employee { get; set; }
-        public Progress progress { get; set; }
 
-        [BindProperty]
-        public string videoURL { get; set; }
+        public Progress progress { get; set; }
 
         [ViewData]
         public int get_score { get; } //display progress bar 
@@ -26,24 +25,34 @@ namespace Employee_Training_Portal.Pages
         [ViewData]
         public string success { get; set; } //display submission response     
 
+        [ViewData]
+        public DateTime? deadline { get; set; } //display date 
+
         private readonly ApplicationDbContext _db;
+
         public EmployeeModel(ApplicationDbContext db)
         {
 
             _db = db;
 
         }
+        public List<string> videoUrls { get; set; }
 
-        public void OnGet()
+        public List<UploadFile> textFiles { get; set; }
+
+
+        public async Task<IActionResult> OnGetAsync()
         {
+            var _videoUrls = await _db.VideoFile.Select(i => i.videoURL).ToListAsync();
+            videoUrls = _videoUrls;
+
+            textFiles = await _db.UploadFile.ToListAsync();
+
             employee = _db.Employee.FirstOrDefault();
-            var _videoURL = _db.VideoFile.FirstOrDefault().videoURL.TrimEnd(); //finds videoURL from the database by id
+            deadline = _db.Progress.FirstOrDefault().deadline; // set deadline 
 
-            videoURL = _videoURL;
-
+            return Page();
         }
-
-
 
         public void OnPost()
         {
@@ -64,22 +73,5 @@ namespace Employee_Training_Portal.Pages
                 _db.SaveChanges();
             }
         }
-
-
-
-
-        /*
-        public IActionResult OnPostSaveScore(int progressBarValue)
-        {
-            get the employee
-            var employee = _db.Employee.FirstOrDefault();
-            
-           
-                _db.Progress.FirstOrDefault().score = progressBarValue;
-                ViewData["success"] = "Progress has been saved! ";
-                _db.SaveChanges();
-            
-            return Page();
-        }*/
     }
 }

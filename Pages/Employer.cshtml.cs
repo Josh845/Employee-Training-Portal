@@ -29,7 +29,6 @@ namespace Employee_Training_Portal.Pages
         [BindProperty]
         DateTime set_deadline { get; set; } = DateTime.Today;  //get deadline set from the calendar
 
-      
         public void OnGet()
         {
 

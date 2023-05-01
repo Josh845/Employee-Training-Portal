@@ -38,56 +38,7 @@ namespace Employee_Training_Portal.Pages
             Files = _db.UploadFile.ToList();
             videoURL = _db.VideoFile.ToList();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="url"></param>
-        /// <param name="videoAction"></param>
-        /// <returns>List of video URL links 
-        /// as well as providing the option to delete existing URL links 
-        /// stored in the database
-        /// </returns>
-        /// <exception cref="Exception"></exception>
-        /*
-        public async Task<IActionResult> OnPostUploadVideo(int id, string url, string videoAction)
-        {
-            try
-            {
-                //btn selected to enter url 
-                if (videoAction == "uploadVideo" && url != null)
-                {
-                    
-                    //create video model to insert into db 
-                    var URL = new Video
-                    {
-                        videoURL = url
-                    };
-                    //insert url link into the video table 
-                    _db.VideoFile.Add(URL);
-                    await _db.SaveChangesAsync();
-                    return Page();
-                }
-                else if(videoAction == "delete") 
-                {
-                    var deleteVideo =  _db.VideoFile.Find(id); // get id of the specified video URL to delete
-                    if (deleteVideo != null)
-                    {
-                        _db.VideoFile.Remove(deleteVideo); //remove videoURL from db
-                        await _db.SaveChangesAsync();
-                    }
-                }
-                videoURL = _db.VideoFile.ToList();
-                return Page();
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Invalid url provided" + ex.Message);
-            }           
-        }
-        */
+    
         /// <summary>
         /// On Post method the files are populated into the 
         /// database and given their assigned ID for retrieval
@@ -97,34 +48,36 @@ namespace Employee_Training_Portal.Pages
         public async Task<IActionResult> OnPostAsync(int id, IFormFile file, string action, string url)
         {
             try
-            {    
+            {
                 if (action == "upload" && file != null)
+                {
+                    // Save the uploaded file to the database
+                    var newFile = new UploadFile
                     {
-                        // Save the uploaded file to the database
-                        var newFile = new UploadFile
-                        {
-                            fileName = file.FileName,
-                            contentType = file.ContentType,
-                            Data = new byte[file.Length]
-                        };
-                        using (var stream = new MemoryStream())
-                        {
-                            await file.CopyToAsync(stream);
-                            newFile.Data = stream.ToArray();
-                        }
-                        _db.UploadFile.Add(newFile);
-                        await _db.SaveChangesAsync();
+                        fileName = file.FileName,
+                        contentType = file.ContentType,
+                        Data = new byte[file.Length]
+                    };
+                    using (var stream = new MemoryStream())
+                    {
+                        await file.CopyToAsync(stream);
+                        newFile.Data = stream.ToArray();
                     }
-                    else if (action == "delete" && file != null)
+                    _db.UploadFile.Add(newFile);
+                    await _db.SaveChangesAsync();
+                }
+                else if (action == "delete")
+                {
+                    // Delete the specified file from the database
+                    var fileToDelete = await _db.UploadFile.FindAsync(id);
+                    if (fileToDelete != null)
                     {
-                        // Delete the specified file from the database
-                        var fileToDelete = await _db.UploadFile.FindAsync(id);
-                        if (fileToDelete != null)
-                        {
-                            _db.UploadFile.Remove(fileToDelete);
-                            await _db.SaveChangesAsync();
-                        }
-                    }         
+                        _db.UploadFile.Remove(fileToDelete);
+                        await _db.SaveChangesAsync();                      
+                    }                
+                   
+                }
+                
                     //logic for video upload and delete
                     //btn selected to enter url 
                     if (action == "uploadVideo" && url != null)
@@ -139,18 +92,17 @@ namespace Employee_Training_Portal.Pages
                         _db.VideoFile.Add(URL);
                         await _db.SaveChangesAsync();                       
                     }
-                    else if (action == "deleteVideo" && url != null)
+                    else if (action == "deleteVideo")
                     {
 
-                        var deleteVideo = _db.VideoFile.Find(id); // get id of the specified video URL to delete
+                        var deleteVideo = await _db.VideoFile.FindAsync(id); // get id of the specified video URL to delete
                         
-                    if (deleteVideo != null)
+                        if (deleteVideo != null)
                         {
                             _db.VideoFile.Remove(deleteVideo); //remove videoURL from db
-                            await _db.SaveChangesAsync();
+                            await _db.SaveChangesAsync();                            
                         }
-
-                    }        
+                    }
                 Files = _db.UploadFile.ToList();
                 videoURL = _db.VideoFile.ToList();
                 return Page();
@@ -159,11 +111,7 @@ namespace Employee_Training_Portal.Pages
             {
                 throw new FileLoadException("Invalid file uploaded please try again\n" + FileError.Message);
 
-            }
-            finally
-            {
-                Message = "";
-            }
+            }       
         }
     }
 }
