@@ -9,3 +9,11 @@ To run the project:
 2) Move to Visual Studio
 3) Clone the repository 
 4) Run and Debug the Application
+
+
+Specified user credentials Are found in appsettings.json for:
+
+-EmployerCred 
+-EmployeeCred
+
+Db script is provided 
